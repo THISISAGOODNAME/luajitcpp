@@ -10,7 +10,7 @@ ExternalProject_Add(project_luajit
         PREFIX ${CMAKE_CURRENT_BINARY_DIR}/luajit-2.1.0-beta2
         UPDATE_COMMAND ""
         CONFIGURE_COMMAND ""
-        BUILD_COMMAND make
+        BUILD_COMMAND make PREFIX=${CMAKE_CURRENT_BINARY_DIR}/luajit-2.1.0-beta2
         BUILD_IN_SOURCE 1
         INSTALL_COMMAND make install PREFIX=${CMAKE_CURRENT_BINARY_DIR}/luajit-2.1.0-beta2
         )
