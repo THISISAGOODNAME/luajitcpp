@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.5)
 project(luajitcpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+if(APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pagezero_size 10000 -image_base 100000000")
+endif()
 
 include(ExternalProject)
 
@@ -24,8 +27,14 @@ add_dependencies(luajit project_luajit)
 
 include_directories(${install_dir}/include/luajit-2.1)
 
-set(SOURCE_FILES luajitCli.cpp)
-add_executable(luajitcpp ${SOURCE_FILES})
+# 1. luajit REPL
+add_executable(luajitrepl src/luajitCli.cpp)
+target_link_libraries(luajitrepl luajit)
 
-target_link_libraries(luajitcpp luajit)
+# 2. luajit 读取lua文件并运行
+add_executable(luajitluafromfile src/luajitLoadLuaFile.cpp)
+target_link_libraries(luajitluafromfile luajit)
+file(COPY version.lua DESTINATION ${CMAKE_BINARY_DIR}/)
+
+
 

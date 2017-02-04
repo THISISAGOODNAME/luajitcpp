@@ -12,24 +12,20 @@ using namespace std;
 void TestLua();
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    std::cout << "世界, 你好!" << std::endl;
+//    std::cout << "Hello, World!" << std::endl;
+//    std::cout << "世界, 你好!" << std::endl;
     TestLua();
     return 0;
 }
 
 void TestLua()
 {
-    std::cout << "1" << std::endl;
     lua_State *L = luaL_newstate();
-    std::cout << "2" << std::endl;
-
     if (L == NULL)
     {
         cout << "lua初始化失败" << endl;
         return;
     }
-
 //    luaopen_base(L);
 //    luaopen_table(L);
 //    luaopen_package(L);
@@ -38,16 +34,13 @@ void TestLua()
 
     luaL_openlibs(L);
 
-    std::cout << "3" << std::endl;
-
     string str;
 
     while (true)
     {
         cout << "请输入lua代码:" << endl;
         cout << "> ";
-//        getline(cin, str, '\n');
-        cin >> str;
+        getline(cin, str, '\n');
         if (str == "quit()")
         {
             break;
