@@ -10,6 +10,7 @@ include(ExternalProject)
 
 ExternalProject_Add(project_luajit
         URL http://luajit.org/download/LuaJIT-2.1.0-beta2.tar.gz
+        URL_MD5 fa14598d0d775a7ffefb138a606e0d7b
         PREFIX ${CMAKE_CURRENT_BINARY_DIR}/luajit-2.1.0-beta2
         UPDATE_COMMAND ""
         CONFIGURE_COMMAND ""
